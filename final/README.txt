@@ -18,6 +18,10 @@ This is supposed to be impossible, and probably is a loophole caused by the queu
 since it only appears to occur when trying to cause it intentionally, I have decided not to spend too much time 
 trying to solve it.
 
+I made the decision to handle serialization in the model component of the project. It is data, after all, and most
+closely resembles the functionality of that component, as a sort of under-the-hood mechanism that the user never
+directly interacts with.
+
 Due to the requirement of two view modules, the MCV design pattern is preferable. Having the relationship between
 each model->view relationship will result in more compartmentalization of code and hopefully an easier read
 for future edits. Distinguishing the model and and controller is also helpful, since the controller will handle
