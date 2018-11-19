@@ -13,9 +13,8 @@ import javafx.scene.shape.Rectangle;
 public class View extends Group {
     public final static double CELL_WIDTH = 20.0;
 
-    private int rowCount = 20;
+    private int rowCount;
     private int columnCount;
-    @FXML private int cellSize;
     private Rectangle[][] display;
 
     public View() {
@@ -37,15 +36,6 @@ public class View extends Group {
     public void setColumnCount(int columnCount) {
         this.columnCount = columnCount;
         this.initializeGrid();
-    }
-
-    public int getCellSize(){
-        return this.cellSize;
-    }
-
-    public int setCellSize(int cellSize){
-        this.cellSize = cellSize;
-        return cellSize;
     }
 
     private void initializeGrid() {
@@ -82,6 +72,7 @@ public class View extends Group {
         }
         int r = model.getSnakeHeadRow();
         int c = model.getSnakeHeadColumn();
+        if(r >= 0 && r < rowCount && c >= 0 && c < columnCount)
         this.display[r][c].setFill(Color.BLACK);
     }
 }
