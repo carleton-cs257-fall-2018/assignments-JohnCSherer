@@ -1,0 +1,16 @@
+<?import snake.View?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:controller="snake.Controller" xmlns:fx="http://javafx.com/fxml">
+    <!-- See https://apps.carleton.edu/creativeservices/identity/college_colors/ for official Carleton colors -->
+    <top>
+        <BorderPane prefHeight="35" style="-fx-background-color: #0B5091; -fx-padding: 10px, 5px, 10px, 5px" >
+            <right><Label fx:id="messageLabel" style="-fx-font-size: 150%; -fx-text-fill: white"/></right>
+        </BorderPane>
+    </top>
+
+    <center>
+        <View fx:id="view" rowCount="25" columnCount="40"/>
+    </center>
+</BorderPane>

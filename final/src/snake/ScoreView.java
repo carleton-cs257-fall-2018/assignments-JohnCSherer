@@ -17,5 +17,7 @@ public class ScoreView extends Group {
     /**
      * Check for score updates
      */
-    public void update(SnakeModel model){}
+    public void update(SnakeModel model){
+
+    }
 }
