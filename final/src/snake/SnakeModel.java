@@ -10,8 +10,12 @@ package snake;
 
 
 import java.util.Random;
+import java.io.*;
 
 public class SnakeModel {
+    private String highscorefilename = "highscoredata.txt";
+
+
     //within the grid, 0=empty, a positive integer represents part of the snakes body, and -1 is an apple
     private int[][] grid;
 
@@ -28,6 +32,7 @@ public class SnakeModel {
     private int snakeLength = 5;
 
     private int highScore = 0;
+    private File highscorefile;
 
     /**
      * Initialize the object using the FXML parameters
@@ -35,6 +40,21 @@ public class SnakeModel {
      * @param columnCount number of columns
      */
     public SnakeModel(int rowCount, int columnCount) {
+        try
+        {
+            highscorefile = new File(highscorefilename);
+            BufferedReader reader = new BufferedReader(new FileReader(highscorefile));
+            String line = reader.readLine();
+            highScore = Integer.parseInt(line);
+            reader.close();
+        }
+
+        catch(IOException x)
+        {
+            System.out.println("An error occured while trying to read the high score file");
+        }
+
+
         assert rowCount > 0 && columnCount > 0;
         this.grid = new int[rowCount][columnCount];
         this.startNewGame();
@@ -94,6 +114,14 @@ public class SnakeModel {
             gameOver = true;
             if(snakeLength > highScore){
                 highScore = snakeLength;
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(highscorefile));
+                    writer.write(Integer.toString(highScore));
+                    writer.close();
+                }
+                catch(IOException x){
+                    System.out.print("Error ocurred while trying to write to file");
+                }
             }
             v.update(this);
             s.update(this);
